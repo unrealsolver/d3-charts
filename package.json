@@ -1,0 +1,22 @@
+{
+  "name": "d3-charts",
+  "version": "0.0.0",
+  "main": "app.js",
+  "devDependencies": {
+    "coffeeify": "~1.0.0",
+    "gulp": "~3.5.5",
+    "gulp-browserify": "^0.5.0",
+    "gulp-coffee": "~1.4.1",
+    "gulp-concat": "~2.1.7",
+    "gulp-connect": "^1.0.7",
+    "gulp-if": "~0.0.5",
+    "gulp-jade": "~0.4.2",
+    "gulp-jshint": "~1.5.0",
+    "gulp-less": "~1.2.3",
+    "gulp-rename": "^1.2.0",
+    "gulp-util": "~2.2.14",
+    "karma": "^0.12.1",
+    "karma-chrome-launcher": "^0.1.2",
+    "karma-jasmine": "^0.1.5"
+  }
+}
