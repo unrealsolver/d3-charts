@@ -4,7 +4,6 @@ var connect    = require('gulp-connect');
 var gulpif     = require('gulp-if');
 var coffee     = require('gulp-coffee');
 var concat     = require('gulp-concat');
-var tplCache   = require('gulp-angular-templatecache');
 var jade       = require('gulp-jade');
 var less       = require('gulp-less');
 var rename     = require('gulp-rename')
@@ -22,31 +21,6 @@ gulp.task('appJS', function() {
     }))
     .pipe(rename('app.js'))
     .pipe(gulp.dest('./build'))
-});
-
-gulp.task('testJS', function() {
-  // Compile JS test files. Not compiled.
-  gulp.src([
-      './app/**/*_test.js',
-      './app/**/*_test.coffee'
-    ])
-    .pipe(
-      gulpif(/[.]coffee$/,
-        coffee({bare: true})
-        .on('error', gutil.log)
-      )
-    )
-    .pipe(gulp.dest('./build'))
-});
-
-gulp.task('templates', function() {
-  // combine compiled Jade and html template files into 
-  // build/template.js
-  gulp.src(['!./app/index.jade', '!./app.index.html',
-      './app/**/*.html', './app/**/*.jade'])
-      .pipe(gulpif(/[.]jade$/, jade().on('error', gutil.log)))
-      .pipe(tplCache('templates.js',{standalone:true}))
-      .pipe(gulp.dest('./build'))
 });
 
 gulp.task('appCSS', function() {
@@ -79,9 +53,6 @@ gulp.task('libJS', function() {
   gulp.src([
     './bower_components/lodash/dist/lodash.js',
     './bower_components/jquery/dist/jquery.js',
-    './bower_components/bootstrap/dist/js/bootstrap.js',
-    './bower_components/angular/angular.js',
-    './bower_components/angular-route/angular-route.js',
     './bower_components/lodashdist/lodash.min.js',
     './bower_components/d3/d3.min.js',
     ]).pipe(concat('lib.js'))
@@ -116,9 +87,6 @@ gulp.task('watch',function() {
   });
 
   // watch files to build
-  gulp.watch(['./app/**/*.coffee', '!./app/**/*_test.coffee', './app/**/*.js', '!./app/**/*_test.js'], ['appJS']);
-  gulp.watch(['./app/**/*_test.coffee', './app/**/*_test.js'], ['testJS']);
-  gulp.watch(['!./app/index.jade', '!./app/index.html', './app/**/*.jade', './app/**/*.html'], ['templates']);
   gulp.watch(['./app/**/*.less', './app/**/*.css'], ['appCSS']);
   gulp.watch(['./app/index.jade', './app/index.html'], ['index']);
 });
@@ -129,4 +97,4 @@ gulp.task('connect', connect.server({
   livereload: true
 }));
 
-gulp.task('default', ['connect', 'appJS', 'testJS', 'templates', 'appCSS', 'index', 'libJS', 'libCSS', 'watch']);
+gulp.task('default', ['connect', 'appJS', 'appCSS', 'index', 'libJS', 'libCSS', 'watch']);
