@@ -87,6 +87,7 @@ gulp.task('watch',function() {
   });
 
   // watch files to build
+  gulp.watch(['./app/**/*.coffee'], ['appJS']);
   gulp.watch(['./app/**/*.less', './app/**/*.css'], ['appCSS']);
   gulp.watch(['./app/index.jade', './app/index.html'], ['index']);
 });
