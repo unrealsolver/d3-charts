@@ -30,6 +30,7 @@ module.exports = (el, data) ->
   yDots = _.map data, (d) -> d[1] * heightMult
   dots = _.zip xDots, yDots
   console.log dots
+  fontSize = 10
   
   ## Defs
   defs = svg.append('defs')
@@ -71,7 +72,10 @@ module.exports = (el, data) ->
   clipPath
     .append('path')
       .attr('d', clipPathPoly(dots.concat([[config.width, 0], [0, 0]])))
-  
+
+  svg
+    .style('font-size', fontSize + 'px')
+
   # Chart
   chart = svg
     .append('g')
