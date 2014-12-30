@@ -1,7 +1,8 @@
 module.exports = (el, data) ->
   svg = d3.select el
-  
+
   baseDimension = _.min [+svg.attr('width'), +svg.attr('height')]
+  cid = svg.attr 'id'
 
   config =
     radius: 0.5 * baseDimension
@@ -19,20 +20,20 @@ module.exports = (el, data) ->
     
   gradient = defs
     .append('radialGradient')
-    .attr('id', 'gradient')
+    .attr('id', "#{cid}-gradient")
     .attr('gradientUnits', 'userSpaceOnUse')
     .attr('cx', 0)
     .attr('cy', 0)
-    .attr('r', "#{config.radius/2.5}%")
+    .attr('r', "50%")
     
   gradient
     .append('stop')
-    .attr('offset', "#{config.radius/10}%")
-    .style('stop-color', 'white')
+    .attr('offset', "0%")
+    .style('stop-color', '#0FF')
   
   gradient
     .append('stop')
-    .attr('offset', '70%')
+    .attr('offset', '100%')
     .style('stop-color', '#07B')
 
   arc = d3.svg.arc()
@@ -45,7 +46,7 @@ module.exports = (el, data) ->
     .append('path')
     .attr('d', arc)
     .attr('transform', "translate(#{config.radius},#{config.radius})")
-    .style('fill', 'url(#gradient)')
+    .style('fill', "url(##{cid}-gradient)")
   
   svg
     .append('text')

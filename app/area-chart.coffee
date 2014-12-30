@@ -1,15 +1,6 @@
 module.exports = (el, data) ->
   svg = d3.select(el)
 
-  data = [
-    ['09/16/14', 102]
-    ['09/17/14', 110]
-    ['09/18/14', 112]
-    ['09/19/14', 126]
-    ['09/20/14', 114]
-    ['09/21/14', 105]
-  ]
-    
   padding =
     top: 2
     left: 30
@@ -93,7 +84,11 @@ module.exports = (el, data) ->
   grid = chart
     .append('g')
       .style('fill', 'none')
-  
+      .style('stroke-width', '1px')
+      .style('stroke', '#5AB7D5')
+      .style('stroke-dasharray', '3, 3')
+      .style('shape-rendering', 'crispedges')
+
   grid
     .selectAll('line')
     .data(dots)
@@ -103,10 +98,6 @@ module.exports = (el, data) ->
       .attr('y1', (d) -> config.height - d[1])
       .attr('x2', (d) -> d[0])
       .attr('y2', config.height)
-      .style('stroke-width', '1px')
-      .style('stroke', '#5AB7D5')
-      .style('stroke-dasharray', '3, 3')
-      .style('shape-rendering', 'crispedges')
       
   line = d3.svg.line()
     .x((d) -> d[0])
