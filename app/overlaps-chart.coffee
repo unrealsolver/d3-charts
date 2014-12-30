@@ -137,7 +137,7 @@ module.exports = (el) ->
         .attr('y1', _.bind(gridLineStep, 0, 'y'))
         .attr('x2', gridLineLength 'x')
         .attr('y2', _.bind(gridLineStep, 0, 'y'))
-         .style('stroke-dasharray', (d, i) -> i == 0 && '0')
+        .style('stroke-dasharray', (d, i) -> i == 0 && '0')
   
   grid
     .append('g')

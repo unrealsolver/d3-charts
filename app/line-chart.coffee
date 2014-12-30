@@ -1,3 +1,5 @@
+util = require './util'
+
 module.exports = (el, data) ->
   svg = d3.select el
 
@@ -62,6 +64,7 @@ module.exports = (el, data) ->
     tickStep /= 2
 
   ticksData = d3.range(0, maxDomain + 1, tickStep)
+  ticksData = util.generateGrid maxValue
 
   ticks = svg
     .append('g')
