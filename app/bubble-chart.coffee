@@ -1,16 +1,6 @@
 module.exports = (el, data) ->
   svg = d3.select el
 
-  data = [
-    # Segment # imps # ctr # population #
-    ['Segment', 5234,  23, 14235]
-    ['Segment', 2234,  8,  235]
-    ['Segment', 8234,  13, 54235]
-    ['Segment', 2634,  7,  235]
-    ['Segment', 2034,  8.5,34235]
-    ['Segment', 2834,  9,  4235]
-  ]
-
   maxImps        = (_.max data, (d) -> d[1])[1]
   maxCtr         = (_.max data, (d) -> d[2])[2]
   maxPopulation  = (_.max data, (d) -> d[3])[3]

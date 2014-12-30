@@ -7,18 +7,18 @@
 
 module.exports = (el) ->
   svg = d3.select el
-  
-  ## R/O data
-  data =
-    labels: ['K_Segment', 'K_Other_One', 'K_One_More', 'K_Segment', 'K_Other_One', 'K_One_More']
-    data: [
-      [100, 94, 84, 66, 64, 44]
-      [91, 100, 70, 56, 54, 54]
-      [93, 82, 100, 46, 54, 34]
-      [76, 84, 84, 100, 44, 54]
-      [61, 65, 60, 66, 100, 34]
-      [63, 52, 56, 56, 74, 100]
-    ]
+
+  ## Sample data
+  #data =
+  #  labels: ['K_Segment', 'K_Other_One', 'K_One_More', 'K_Segment', 'K_Other_One', 'K_One_More']
+  #  data: [
+  #    [100, 94, 84, 66, 64, 44]
+  #    [91, 100, 70, 56, 54, 54]
+  #    [93, 82, 100, 46, 54, 34]
+  #    [76, 84, 84, 100, 44, 54]
+  #    [61, 65, 60, 66, 100, 34]
+  #    [63, 52, 56, 56, 74, 100]
+  #  ]
   
   ## R/O config
   conf =
@@ -37,7 +37,7 @@ module.exports = (el) ->
   ## Mutable state + internal config
   state =
     dim:
-      x: _.size _.max data.data, (d) -> _.size d 
+      x: _.size _.max data.data, (d) -> _.size d
       y: _.size data.data
     gridOffset:
       x: conf.cell.width + conf.grid.gap

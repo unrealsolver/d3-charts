@@ -21,6 +21,8 @@ gulp.task('appJS', function() {
     }))
     .pipe(rename('app.js'))
     .pipe(gulp.dest('./build'))
+    .pipe(rename('charts.js'))
+    .pipe(gulp.dest('../rb_dataconsole/console/util/pdf/static/scripts/'))
 });
 
 gulp.task('appCSS', function() {
@@ -95,7 +97,9 @@ gulp.task('watch',function() {
 gulp.task('connect', connect.server({
   root: ['build'],
   port: 9001,
-  livereload: true
+  livereload: {
+    port: 35730
+  }
 }));
 
 gulp.task('default', ['connect', 'appJS', 'appCSS', 'index', 'libJS', 'libCSS', 'watch']);

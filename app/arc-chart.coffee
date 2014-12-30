@@ -1,13 +1,10 @@
 module.exports = (el, data) ->
   svg = d3.select el
-  
-  data =
-    uniques: 792
-    requests: 491
-  
+
   svg
     .style('font-family', 'Open Sans')
     .style('stroke', 'white')
+    .style('opacity', .8)
     
   height = svg.attr('height')
   width = svg.attr('width')

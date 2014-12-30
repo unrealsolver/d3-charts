@@ -4,15 +4,6 @@ module.exports = (el, data) ->
   width = svg.attr 'width'
   height = svg.attr 'height'
 
-  data = [
-    ['09/16/14', 102, 110]
-    ['09/17/14', 110, 130]
-    ['09/18/14', 112, 159]
-    ['09/19/14', 126, 102]
-    ['09/20/14', 114, 91]
-    ['09/21/14', 105, 127]
-  ]
-
   maxValue = _.max([
     _.last _.max data, (d) -> d[1]
   ,

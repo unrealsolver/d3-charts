@@ -1,12 +1,6 @@
 module.exports = (el, data) ->
   svg = d3.select el
 
-  data = [
-    ["AD UNIT 01", 451]
-    ["AD UNIT 02", 108]
-    ["AD UNIT 03", 74]
-  ]
-
   width = svg.attr 'width'
   height = svg.attr 'height'
   maxValue = _.last _.max data, (d) -> d[1]
@@ -66,6 +60,7 @@ module.exports = (el, data) ->
         .attr('x2', width)
         .attr('y2', (d) -> chartDims.height - scale(d))
         .style('stroke-dasharray', (d) -> d > 0 && '2, 2')
+        .style('fill', 'none')
 
   drawTick = (sel) ->
     sel
@@ -82,22 +77,6 @@ module.exports = (el, data) ->
     .enter()
     .call(drawLine)
     .call(drawTick)
-
-  #svg
-  #  .append('line')
-  #    .attr('transform', "translate(#{chartDims.x}, #{chartDims.y})")
-  #    .attr('x1', 0)
-  #    .attr('y1', 0)
-  #    .attr('x2', 0)
-  #    .attr('y2', height)
-
-  #svg
-  #  .append('line')
-  #    .attr('transform', "translate(#{width}, #{chartDims.y})")
-  #    .attr('x1', 0)
-  #    .attr('y1', 0)
-  #    .attr('x2', 0)
-  #    .attr('y2', height)
 
   labels = svg
     .append('g')
