@@ -20,12 +20,11 @@ module.exports = (el, data) ->
   xDots = _.map data, (d, i) -> i * xOffset
   yDots = _.map data, (d) -> d[1] * heightMult
   dots = _.zip xDots, yDots
-  console.log dots
   fontSize = 10
-  
+
   ## Defs
   defs = svg.append('defs')
-  
+
   ## Gradient
   gradient = defs
     .append('linearGradient')
@@ -34,12 +33,12 @@ module.exports = (el, data) ->
     .attr('y1', '0%')
     .attr('x2', '0%')
     .attr('y2', '100%')
-    
+
   gradient
     .append('stop')
     .attr('offset', '0%')
     .style('stop-color', '#67C1DB')
-    
+
   gradient
     .append('stop')
     .attr('offset', '45%')

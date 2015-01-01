@@ -1,13 +1,13 @@
+util = require './util'
+
 module.exports = (el, data) ->
   svg = d3.select el
 
   width = svg.attr 'width'
   height = svg.attr 'height'
   maxValue = _.last _.max data, (d) -> d[1]
-  exponent = Math.floor Math.log10 maxValue
-  expMult = Math.pow 10, exponent
-  maxDomain = Math.ceil(maxValue / expMult) * expMult
-  maxTicks = 4
+  ticksData = util.generateGrid maxValue
+  maxDomain = _.last ticksData
 
   fontSize = 9
 
@@ -42,12 +42,6 @@ module.exports = (el, data) ->
     .style('font-size', fontSize + 'px')
 
   ## TICKS / GRID
-  tickStep = expMult
-  while maxDomain / tickStep < maxTicks
-    tickStep /= 2
-
-  ticksData = d3.range(0, maxDomain + 1, tickStep)
-
   ticks = svg
     .append('g')
       .attr('transform', "translate(0, #{chartDims.y})")

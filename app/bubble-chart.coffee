@@ -1,3 +1,5 @@
+util = require './util'
+
 module.exports = (el, data) ->
   svg = d3.select el
 
@@ -5,18 +7,10 @@ module.exports = (el, data) ->
   maxCtr         = (_.max data, (d) -> d[2])[2]
   maxPopulation  = (_.max data, (d) -> d[3])[3]
 
-  getDomainStep = (value) ->
-    exponent = Math.floor Math.log10 value
-    expMult = Math.pow 10, exponent
-
-  enlargeDomain = (value) ->
-    expMult = getDomainStep value
-    Math.ceil(value / expMult) * expMult
-
-  xDomainStep = getDomainStep maxImps
-  yDomainStep = getDomainStep maxCtr
-  xMaxDomain  = enlargeDomain maxImps
-  yMaxDomain  = enlargeDomain maxCtr
+  xTicksData = util.generateGrid maxImps
+  xMaxDomain = _.last xTicksData
+  yTicksData = util.generateGrid maxCtr
+  yMaxDomain = _.last yTicksData
 
   width = svg.attr 'width'
   height = svg.attr 'height'
@@ -61,26 +55,20 @@ module.exports = (el, data) ->
 
   chart = svg
     .append('g')
-      .attr('transform', 'translate(30, 0)')
+      .attr('transform', 'translate(27, 1)')
 
   ## GRID
   grid = chart
     .append('g')
       .style('stroke', '#DDD')
 
-  ## HORIZONTAL GRID
-  getGridDivision = (step, max, density) ->
-    Math.ceil(Math.log(step * density / max) / Math.LN2)
-
-  #yDomainStep = yDomainStep / getGridDivision(yDomainStep, yMaxDomain, gridDensity)
-  horGridData = d3.range(0, yMaxDomain + 1, yDomainStep)
-
+  ## HORIZONTAL
   horGrid = grid
     .append('g')
 
   horGrid
     .selectAll()
-    .data(horGridData)
+    .data(yTicksData)
     .enter()
     .append('line')
       .attr('x1', 0)
@@ -89,15 +77,12 @@ module.exports = (el, data) ->
       .attr('y2', (d) -> chartDims.height - yScale d)
 
   ## VERT GRID
-  #xDomainStep = xDomainStep / getGridDivision(xDomainStep, xMaxDomain, gridDensity)
-  vertGridData = d3.range(0, xMaxDomain + 1, xDomainStep)
-
-  horGrid = grid
+  vertGrid = grid
     .append('g')
 
-  horGrid
+  vertGrid
     .selectAll()
-    .data(vertGridData)
+    .data(xTicksData)
     .enter()
     .append('line')
       .attr('x1', (d) -> xScale d)
@@ -156,11 +141,11 @@ module.exports = (el, data) ->
   horAxis = axises
     .append('g')
       .attr('transform', "translate(30, #{height - 20})")
-      .call(drawAxis, 'IMPRESSIONS', chartDims.width)
+      .call(drawAxis, 'IMPRESSIONS', chartDims.width - 10)
 
   ## VERTICAL AXIS
   vertAxis = axises
     .append('g')
       .attr('transform', "rotate(-90, 0, #{height-20}) translate(20, #{height - 20})")
-      .call(drawAxis, 'CTR', chartDims.width)
+      .call(drawAxis, 'CTR', chartDims.height - 20)
 

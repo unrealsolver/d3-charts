@@ -12,11 +12,6 @@ module.exports = (el, data) ->
     _.last _.max data, (d) -> d[2]]
   )
 
-  exponent = Math.floor Math.log10 maxValue
-  expMult = Math.pow 10, exponent
-  maxDomain = Math.ceil(maxValue / expMult) * expMult
-  maxTicks = 4
-
   fontSize = 9
 
   conf =
@@ -35,6 +30,9 @@ module.exports = (el, data) ->
   barWidth = 50
   barsGap = chartDims.width / data.length
 
+  ticksData = util.generateGrid maxValue
+  maxDomain = _.last ticksData
+
   scale = d3.scale.linear()
     .domain([0, maxDomain])
     .range([0, chartDims.height])
@@ -49,14 +47,7 @@ module.exports = (el, data) ->
     .style('fill', clrWhite)
     .style('font-size', fontSize + 'px')
 
-  ## TICKS / GRID
-  tickStep = expMult
-  while maxDomain / tickStep < maxTicks
-    tickStep /= 2
-
-  ticksData = d3.range(0, maxDomain + 1, tickStep)
-  ticksData = util.generateGrid maxValue
-
+  ## TICKS/GRID
   ticks = svg
     .append('g')
       .attr('transform', "translate(0, #{chartDims.y})")
