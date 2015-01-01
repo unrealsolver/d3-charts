@@ -79,7 +79,7 @@ module.exports = (el, data) ->
     [data.requests, data.uniques],
     ['UNIQUES', 'REQUESTS']
   )
-  
+
   tspan = (sel, text, size) ->
     sel
       .append('tspan')

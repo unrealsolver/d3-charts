@@ -5,7 +5,7 @@
 ## Deps:
 ## * underscore / lodash
 
-module.exports = (el) ->
+module.exports = (el, data) ->
   svg = d3.select el
 
   ## Sample data

@@ -21,6 +21,7 @@ html(lang="en")
     script(src="app.js")
 
     script.
+      var arcData = {uniques: 950, requests: 750}
       var lineData = [
         ['09/16/14', 102, 110],
         ['09/17/14', 110, 130],
@@ -63,7 +64,7 @@ html(lang="en")
         ]
       }
 
-      arcChart('#svg0')
+      arcChart('#svg0', arcData)
       lineChart('#svg1', lineData)
       barChart('#svg2', barData)
       bubbleChart('#svg3', bubbleData)
