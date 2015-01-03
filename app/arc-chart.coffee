@@ -2,7 +2,6 @@ module.exports = (el, data) ->
   svg = d3.select el
 
   svg
-    .style('font-family', 'Open Sans')
     .style('stroke', 'white')
     .style('opacity', .8)
     
@@ -15,18 +14,18 @@ module.exports = (el, data) ->
     uniquesRadius: radius
     requestsRadius: radius * data.requests / data.uniques
     bottomLine: height - bottomOffset
-    ellipseAspect: 0.6
+    ellipseAspect: 0.7
     stoplinesMargin: 10
-  
+
   stopLinesData = [1, config.requestsRadius * 2, config.uniquesRadius * 2]
-  
+
   defs = svg
     .append('defs')
-    
+
   clipPath = defs
     .append('clipPath')
       .attr('id', 'clip-path')
-  
+
   clipPathInst = clipPath
     .append('rect')
       .attr('x', 0)
@@ -37,29 +36,30 @@ module.exports = (el, data) ->
   dashed = svg
     .append('g')
     .style('fill', 'none')
-    .style('stroke-dasharray', '3, 3')
-  
+    .style('stroke-dasharray', '3, 1')
+
   ellipses = dashed
     .append('g')
     .attr('clip-path', 'url(#clip-path)')
-  
+
   ellipses
     .append('ellipse')
     .attr('rx', config.uniquesRadius)
     .attr('ry', config.uniquesRadius * config.ellipseAspect)
     .attr('cy', config.bottomLine)
     .attr('cx', config.uniquesRadius)
-    
+
   ellipses
     .append('ellipse')
     .attr('rx', config.requestsRadius)
     .attr('ry', config.requestsRadius * config.ellipseAspect)
     .attr('cy', config.bottomLine)
     .attr('cx', config.requestsRadius)
+    .style('fill', 'rgba(0, 0, 0, .1)')
 
   stopLines = dashed
     .append('g')
-    
+
   stopLines
     .selectAll('line')
     .data(stopLinesData)
@@ -70,10 +70,11 @@ module.exports = (el, data) ->
       .attr('x2', (d) -> d)
       .attr('y2', height)
       .style('shape-rendering', 'crispedges')
-  
+      .style('stroke', 'rgba(255, 255, 255, .5)')
+
   textLabels = svg
     .append('g')
-    
+
   textLabelsData = _.zip(
     stopLinesData.slice(1),
     [data.requests, data.uniques],
@@ -87,7 +88,7 @@ module.exports = (el, data) ->
       .attr('x', 0)
       .style('font-size', size)
       .text(text)
-  
+
   textLabels
     .selectAll()
     .data(textLabelsData)

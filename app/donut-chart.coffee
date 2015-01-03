@@ -12,9 +12,6 @@ module.exports = (el, data) ->
     descFontSize: 0.05 * baseDimension
     
 
-  svg
-    .style('font-family', 'Helvetica')
-
   defs =
     svg.append('defs')
     

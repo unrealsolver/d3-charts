@@ -42,7 +42,6 @@ module.exports = (el, data) ->
   svg
     .style('stroke-width', '1px')
     .attr('shape-rendering', 'crispEdges')
-    .style('font-family', 'Open Sans')
     .style('stroke', clrWhite)
     .style('fill', clrWhite)
     .style('font-size', fontSize + 'px')

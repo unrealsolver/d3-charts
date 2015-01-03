@@ -48,7 +48,6 @@ module.exports = (el, data) ->
   svg
     .style('stroke-width', '1px')
     .attr('shape-rendering', 'crispEdges')
-    .style('font-family', 'Open Sans')
     .style('stroke', '#59F')
     .style('fill', '#59F')
     .style('font-size', fontSize + 'px')
@@ -135,7 +134,6 @@ module.exports = (el, data) ->
       .style('stroke', '#07B')
       .style('stroke-width', 1)
       .style('fill', '#07B')
-      #.attr('font-size', fontS)
 
   ## HORIZONTAL AXIS
   horAxis = axises

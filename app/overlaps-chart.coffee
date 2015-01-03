@@ -54,7 +54,6 @@ module.exports = (el, data) ->
     
   chart = svg.append('g')
     .attr('transform', 'translate(50, 50)')
-    .style('font-family', 'Helvetica')
   
   
   ## FUNCTIONS ##

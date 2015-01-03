@@ -113,7 +113,6 @@ module.exports = (el, data) ->
         
   chart
     .append('g')
-    .style('font-family', 'Helvetica')
     .selectAll('text')
     .data(_.zip _.map(data, (d) -> d[0]), _.map(dots, (d) -> d[0]))
     .enter()
