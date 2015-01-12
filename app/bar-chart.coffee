@@ -35,10 +35,11 @@ module.exports = (el, data) ->
 
   svg
     .style('stroke-width', '1px')
-    .attr('shape-rendering', 'crispEdges')
+    #.attr('shape-rendering', 'crispEdges')
     .style('stroke', clrWhite)
     .style('fill', clrWhite)
     .style('font-size', fontSize + 'px')
+    .style('stroke-width', '.5')
 
   ## TICKS / GRID
   ticks = svg

@@ -41,10 +41,11 @@ module.exports = (el, data) ->
 
   svg
     .style('stroke-width', '1px')
-    .attr('shape-rendering', 'crispEdges')
+    #.attr('shape-rendering', 'crispEdges')
     .style('stroke', clrWhite)
-    .style('fill', clrWhite)
+    .style('fill', 'none')
     .style('font-size', fontSize + 'px')
+    .style('stroke-width', '.5')
 
   ## TICKS/GRID
   ticks = svg
@@ -68,6 +69,7 @@ module.exports = (el, data) ->
         .text((d) -> d + (d > 0 && 'K' || ''))
         .style('stroke', 'none')
         .style('text-anchor', 'end')
+        .style('fill', clrWhite)
 
   ticks
     .selectAll()
@@ -79,6 +81,7 @@ module.exports = (el, data) ->
   ## LABELS
   labels = svg
     .append('g')
+    .style('fill', clrWhite)
 
   labels
     .selectAll()
@@ -106,13 +109,13 @@ module.exports = (el, data) ->
   lines
     .append('path')
       .attr('d', line(1)(data))
-      .style('stroke-width', '3px')
+      .style('stroke-width', '2px')
       .style('fill', 'none')
 
   lines
     .append('path')
       .attr('d', line(2)(data))
-      .style('stroke-width', '3px')
+      .style('stroke-width', '2px')
       .style('fill', 'none')
       .style('stroke-dasharray', '7, 7')
 

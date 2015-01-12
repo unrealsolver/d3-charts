@@ -4,6 +4,7 @@ module.exports = (el, data) ->
   svg
     .style('stroke', 'white')
     .style('opacity', .8)
+    .style('stroke-width', '.5')
     
   height = svg.attr('height')
   width = svg.attr('width')
@@ -69,7 +70,7 @@ module.exports = (el, data) ->
       .attr('y1', config.bottomLine + config.stoplinesMargin)
       .attr('x2', (d) -> d)
       .attr('y2', height)
-      .style('shape-rendering', 'crispedges')
+      #.style('shape-rendering', 'crispedges')
       .style('stroke', 'rgba(255, 255, 255, .5)')
 
   textLabels = svg
@@ -102,4 +103,5 @@ module.exports = (el, data) ->
       .style('stroke', 'none')
       .style('fill', 'white')
       .attr('text-anchor', 'end')
-      .style('font-size', '15px')
+      .style('font-size', '12px')
+
