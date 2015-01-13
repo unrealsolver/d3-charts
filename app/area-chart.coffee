@@ -20,7 +20,7 @@ module.exports = (el, data) ->
   xDots = _.map data, (d, i) -> i * xOffset
   yDots = _.map data, (d) -> d[1] * heightMult
   dots = _.zip xDots, yDots
-  fontSize = 10
+  fontSize = 8
 
   ## Defs
   defs = svg.append('defs')
@@ -83,10 +83,10 @@ module.exports = (el, data) ->
   grid = chart
     .append('g')
       .style('fill', 'none')
-      .style('stroke-width', '1px')
+      .style('stroke-width', '.5px')
       .style('stroke', '#5AB7D5')
-      .style('stroke-dasharray', '3, 3')
-      .style('shape-rendering', 'crispedges')
+      .style('stroke-dasharray', '2, 1')
+      #.style('shape-rendering', 'crispedges')
 
   grid
     .selectAll('line')
@@ -107,18 +107,19 @@ module.exports = (el, data) ->
     .append('g')
     .append('path')
       .attr('d', line(dots))
-        .style('stroke-width', '2.5px')
+        .style('stroke-width', '1.5px')
         .style('stroke', '#0085B7')
         .style('fill', 'none')
-        
+
   chart
     .append('g')
+    .style('text-anchor', 'middle')
+    .style('fill', '#0085B7')
     .selectAll('text')
     .data(_.zip _.map(data, (d) -> d[0]), _.map(dots, (d) -> d[0]))
     .enter()
     .append('text')
-    .attr('x', (d) -> d[1] - 30)
-    .attr('y', config.height + padding.bottom)
-    .text((d) -> d[0])
-    .style('fill', '#0085B7')
+      .attr('x', (d) -> d[1])
+      .attr('y', config.height + padding.bottom)
+      .text((d) -> d[0])
 
