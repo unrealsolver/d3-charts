@@ -23,14 +23,14 @@ module.exports = (el, data) ->
   ## R/O config
   conf =
     cell:
-      width: 56
-      height: 24
-      fontSize: 14
+      width: 48
+      height: 18
+      fontSize: 10
     grid:
       gap: 5
-      fontSize: 12
+      fontSize: 8
     labelTrimLength: 150
-    color: '#ED4269'
+    color: '#EC4169'
   
   ## PRE-RENDERING ##
   
@@ -49,8 +49,8 @@ module.exports = (el, data) ->
     labels: []
   
   
-  svg
-    .style('shape-rendering', 'crispedges')
+  #svg
+  #  .style('shape-rendering', 'crispedges')
     
   chart = svg.append('g')
     .attr('transform', 'translate(50, 50)')
@@ -120,9 +120,9 @@ module.exports = (el, data) ->
   
   grid = chart.append('g')
     .attr('class', 'grid')
-      .style('stroke-width', 1)
+      .style('stroke-width', .5)
       .style('stroke', '#CECED0')
-      .style('stroke-dasharray', '3, 3')
+      .style('stroke-dasharray', '2, 2')
       .style('fill', 'none')
 
   grid

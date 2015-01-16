@@ -22,7 +22,7 @@ gulp.task('appJS', function() {
     .pipe(rename('app.js'))
     .pipe(gulp.dest('./build'))
     .pipe(rename('charts.js'))
-    .pipe(gulp.dest('../rb_dataconsole/console/util/pdf/static/scripts/'))
+    .pipe(gulp.dest('../rb_dataconsole/console/util/pdf/static/scripts/audience-insight/'))
 });
 
 gulp.task('appCSS', function() {
